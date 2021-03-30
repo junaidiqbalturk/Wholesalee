@@ -55,6 +55,8 @@ public class ManageProducts extends javax.swing.JFrame {
         jDesktopPane1 = new javax.swing.JDesktopPane();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        price_txt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -77,40 +79,40 @@ public class ManageProducts extends javax.swing.JFrame {
         pdct_name_txt.setBackground(new java.awt.Color(102, 102, 102));
         pdct_name_txt.setForeground(new java.awt.Color(255, 255, 255));
         pdct_name_txt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        jPanel1.add(pdct_name_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 58, 262, 29));
+        jPanel1.add(pdct_name_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 60, 262, 29));
 
         qty_txt.setBackground(new java.awt.Color(102, 102, 102));
         qty_txt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         qty_txt.setForeground(new java.awt.Color(255, 255, 255));
         qty_txt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        jPanel1.add(qty_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 113, 262, 29));
+        jPanel1.add(qty_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 262, 29));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Quantity");
-        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 113, 129, 29));
+        jLabel3.setText("Price of Product");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 129, 29));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Category");
-        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 168, 129, 29));
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 129, 29));
 
         category_combo.setBackground(new java.awt.Color(102, 102, 102));
         category_combo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         category_combo.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        jPanel1.add(category_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(143, 168, 262, 29));
+        jPanel1.add(category_combo, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 200, 262, 29));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Date");
-        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 215, 129, 29));
+        jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 129, 29));
 
         pdt_dt.setBackground(new java.awt.Color(102, 102, 102));
         pdt_dt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        jPanel1.add(pdt_dt, new org.netbeans.lib.awtextra.AbsoluteConstraints(145, 215, 260, 29));
+        jPanel1.add(pdt_dt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 260, 29));
 
         add_pdct_btn.setBackground(new java.awt.Color(102, 102, 102));
         add_pdct_btn.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -121,7 +123,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 add_pdct_btnActionPerformed(evt);
             }
         });
-        jPanel1.add(add_pdct_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 280, 128, 36));
+        jPanel1.add(add_pdct_btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 128, 36));
 
         jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -146,6 +148,18 @@ public class ManageProducts extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/innovatrasolution/images/Images/crossbtn.png"))); // NOI18N
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(853, 0, 37, 35));
+
+        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setText("Quantity");
+        jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, 129, 29));
+
+        price_txt.setBackground(new java.awt.Color(102, 102, 102));
+        price_txt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        price_txt.setForeground(new java.awt.Color(255, 255, 255));
+        price_txt.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
+        jPanel1.add(price_txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 160, 262, 29));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 890, 490));
 
@@ -208,11 +222,14 @@ public class ManageProducts extends javax.swing.JFrame {
         String Category = category_combo.getSelectedItem().toString();
         
       int Index = FetchCategoryIndex(Category); 
-      System.out.println(Index);
+      //System.out.println(Index);
 //        int index = Integer.parseInt(CategoryIndex);
         
         java.util.Date date = pdt_dt.getDate();
         String strDate = DateFormat.getDateInstance().format(date);
+        
+        String Unit_Price = price_txt.getText();
+        int UnitPrice = Integer.parseInt(Unit_Price);
          String url = "JDBC:sqlite:temp.db";
         Connection conn = null; 
         
@@ -224,7 +241,7 @@ public class ManageProducts extends javax.swing.JFrame {
             ex.getStackTrace();
         }
         if( CheckField(ProductName, ProductQty, Category, strDate)){
-            String query = "INSERT into Products(product_name, product_qty, date, category_id) VALUES(?,?,?,?);";
+            String query = "INSERT into Products(product_name, product_qty, date, category_id, product_price) VALUES(?,?,?,?,?);";
             try{
                 
                 PreparedStatement stmt = conn.prepareStatement(query);
@@ -232,6 +249,7 @@ public class ManageProducts extends javax.swing.JFrame {
                 stmt.setInt(2, Qty);
                 stmt.setString(3, strDate);
                 stmt.setInt(4, Index);
+                stmt.setInt(5, UnitPrice);
                 stmt.executeUpdate();
                 ProductAddedDialog ProductDialog = new ProductAddedDialog();
                 ProductDialog.setVisible(true);
@@ -322,9 +340,11 @@ public class ManageProducts extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField pdct_name_txt;
     private com.toedter.calendar.JDateChooser pdt_dt;
+    private javax.swing.JTextField price_txt;
     private javax.swing.JTextField qty_txt;
     // End of variables declaration//GEN-END:variables
 }

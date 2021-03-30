@@ -161,6 +161,9 @@ public class Dashboard extends javax.swing.JFrame {
 
     private void products_lblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_products_lblMouseClicked
         // TODO add your handling code here:
+        ProductManagementDashboard ProductManagement = new ProductManagementDashboard();
+        ProductManagement.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_products_lblMouseClicked
 
     /**

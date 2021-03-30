@@ -5,7 +5,10 @@
  */
 package com.innovatrasolution.ui;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,7 +16,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,11 +33,7 @@ public class ManageCategory extends javax.swing.JFrame {
      */
     public ManageCategory() {
         initComponents();
-        DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
-        dtcr.setHorizontalAlignment(SwingConstants.CENTER);
-        category_tbl.getColumn("ID").setCellRenderer(dtcr);
-        category_tbl.getColumn("Name").setCellRenderer(dtcr);
-        
+  
     }
 
     /**
@@ -54,9 +55,9 @@ public class ManageCategory extends javax.swing.JFrame {
         img_linklbl = new javax.swing.JLabel();
         warning_lbl = new javax.swing.JLabel();
         cat_name_txt1 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
-        img_uploadlbl = new javax.swing.JLabel();
         jDesktopPane1 = new javax.swing.JDesktopPane();
+        img_uploadlbl = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         category_tbl = new javax.swing.JTable();
         upload_imgbtn1 = new javax.swing.JButton();
@@ -147,28 +148,36 @@ public class ManageCategory extends javax.swing.JFrame {
         });
         jPanel1.add(cat_name_txt1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 210, 30));
 
-        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 200));
-        jPanel1.add(img_uploadlbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 150, 140));
-
-        jDesktopPane1.setBackground(new java.awt.Color(10, 102, 102));
+        jDesktopPane1.setBackground(new java.awt.Color(255, 255, 255));
         jDesktopPane1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153), 2));
-        jDesktopPane1.setForeground(new java.awt.Color(255, 255, 255));
+        jDesktopPane1.setForeground(new java.awt.Color(0, 0, 0));
         jDesktopPane1.setMaximumSize(new java.awt.Dimension(208, 212));
         jDesktopPane1.setMinimumSize(new java.awt.Dimension(208, 212));
+
+        img_uploadlbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        img_uploadlbl.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        jDesktopPane1.setLayer(img_uploadlbl, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
         jDesktopPane1.setLayout(jDesktopPane1Layout);
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 204, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addComponent(img_uploadlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 58, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 208, Short.MAX_VALUE)
+            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+                .addComponent(img_uploadlbl, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 72, Short.MAX_VALUE))
         );
 
         jPanel1.add(jDesktopPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 40, 150, 140));
+
+        jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, 200));
 
         category_tbl.setBackground(new java.awt.Color(102, 102, 102));
         category_tbl.setBorder(new javax.swing.border.MatteBorder(null));
@@ -176,19 +185,25 @@ public class ManageCategory extends javax.swing.JFrame {
         category_tbl.setForeground(new java.awt.Color(255, 255, 255));
         category_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null}
+
             },
             new String [] {
-                "ID", "Name"
+                "ID", "Category"
             }
         ) {
             Class[] types = new Class [] {
                 java.lang.Integer.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         category_tbl.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -287,14 +302,17 @@ public class ManageCategory extends javax.swing.JFrame {
         }
         
          String CategoryName = cat_name_txt1.getText();
+         String ImgUrl = img_linklbl.getText();
+         System.out.println(ImgUrl);
          
          
         if( CheckField(CategoryName) == true ){
-            String query = "INSERT into category(category_name) VALUES(?);";
+            String query = "INSERT into category(category_name, category_image) VALUES(?,?);";
             try{
                 
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, CategoryName);
+                stmt.setString(2,ImgUrl);
                 stmt.executeUpdate();
                 CategoryAddedDialog dialog = new CategoryAddedDialog();
                 dialog.setVisible(true);
@@ -316,6 +334,27 @@ public class ManageCategory extends javax.swing.JFrame {
 
     private void upload_imgbtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upload_imgbtn1ActionPerformed
         // TODO add your handling code here:
+        
+        JFileChooser MyFileChooser = new JFileChooser();
+        MyFileChooser.showOpenDialog(null);
+        File MyFile = MyFileChooser.getSelectedFile();
+        img_uploadlbl.setIcon(new ImageIcon(MyFile.toString()));
+        FileName = MyFile.getAbsoluteFile().toString();
+        img_linklbl.setText(FileName);
+        
+        try{
+            File Image = new File(FileName);
+            FileInputStream InputStream = new FileInputStream(Image);
+            ByteArrayOutputStream OutputStream = new ByteArrayOutputStream();
+            byte[] buffer = new byte[1024];
+                for(int readNum; (readNum = InputStream.read(buffer))!= -1;){
+                    OutputStream.write(buffer, 0, readNum);
+                }
+                Photo = OutputStream.toByteArray();
+        }catch(IOException ex){
+            JOptionPane.showMessageDialog(null,ex);
+        }
+ 
     }//GEN-LAST:event_upload_imgbtn1ActionPerformed
 
     private void cat_name_txt1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cat_name_txt1ActionPerformed
@@ -353,6 +392,8 @@ public class ManageCategory extends javax.swing.JFrame {
                     
                     TblModel.addRow(data);
                 }
+                res.close();
+                conn.close();
                 
         }catch(SQLException ex){
             ex.getStackTrace();
@@ -417,6 +458,6 @@ public class ManageCategory extends javax.swing.JFrame {
     private javax.swing.JLabel warning_lbl;
     // End of variables declaration//GEN-END:variables
 byte[] Photo = null; 
-String FileName = null; 
+String FileName; 
 }
 
